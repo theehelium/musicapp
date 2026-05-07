@@ -123,6 +123,8 @@
       text-decoration:none;
       border-radius:8px;
       transition:0.3s;
+      border:none;
+      cursor:pointer;
     }
 
     .play-btn:hover{
@@ -172,17 +174,17 @@
 
     <div class="music-grid" id="musicGrid">
 
-      <!-- CARD 1 -->
+      <!-- CARD 1 - Cloudinary Mix -->
 <div class="music-card">
   <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop" alt="music">
 
   <div class="music-info">
-    <h3>DJ BYRON</h3>
-    <p class="artist">DJ BYRON</p>
+    <h3>2023 URBANIZED PARTY MIX</h3>
+    <p class="artist">DJ BYRON WORLDWIDE ft. Sia, J. Bieber, J. Derulo, Ed Sheeran</p>
 
-    <!-- AUDIO PLAYER -->
-    <audio id="justinSong" controls>
-      <source src="Justin.mp3" type="audio/mpeg">
+    <!-- AUDIO PLAYER with Cloudinary URL -->
+    <audio id="mixSong" controls>
+      <source src="https://res.cloudinary.com/dsedfuptl/video/upload/v1778191402/2023_URBANIZED_PARTY_MIX_-__DJ_BYRON_WORLDWIDE_BEATNATION_ft_Sia__J._Bieber__J._Derulo__Ed_Sheeran_128k_tph5a2.mp3" type="audio/mp3">
       Your browser does not support audio.
     </audio>
 
@@ -190,7 +192,7 @@
 
     <!-- PLAY BUTTON -->
     <button class="play-btn"
-      onclick="document.getElementById('justinSong').play()">
+      onclick="document.getElementById('mixSong').play()">
       Play Song
     </button>
   </div>
@@ -202,17 +204,16 @@
   <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop" alt="music">
 
   <div class="music-info">
-    <h3>Migos</h3>
-    <p class="artist">Migos</p>
+    <h3>DJ F2</h3>
+    <p class="artist">DJ F2</p>
 
-    <!-- AUDIO PLAYER -->
     <audio id="TrapSong" controls>
       <source src="Trap.mp3" type="audio/mp3">
+      Your browser does not support audio.
     </audio>
 
     <br><br>
 
-    <!-- PLAY BUTTON -->
     <button class="play-btn"
       onclick="document.getElementById('TrapSong').play()">
       Play Song
@@ -226,42 +227,18 @@
   <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop" alt="music">
 
   <div class="music-info">
-    <h3>GYPTIAN</h3>
-    <p class="artist">Gyptian</p>
+    <h3>BEST VYBZ KARTEL AND KONSHENS</h3>
+    <p class="artist">Vybz Kartel</p>
 
-    <!-- AUDIO PLAYER -->
     <audio id="vybzSong" controls>
       <source src="Vybz.mp3" type="audio/mp3">
+      Your browser does not support audio.
     </audio>
 
     <br><br>
 
-    <!-- PLAY BUTTON -->
     <button class="play-btn"
       onclick="document.getElementById('vybzSong').play()">
-      Play Song
-    </button>
-  </div>
-</div>
-
-      <!-- CARD 4 -->
-<div class="music-card">
-  <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop" alt="music">
-
-  <div class="music-info">
-    <h3>MARSHMELLO</h3>
-    <p class="artist">Marshmello</p>
-
-    <!-- AUDIO PLAYER -->
-    <audio id="marshmelloSong" controls>
-      <source src="Marshmello.mp3" type="audio/mp3">
-    </audio>
-
-    <br><br>
-
-    <!-- PLAY BUTTON -->
-    <button class="play-btn"
-      onclick="document.getElementById('marshmelloSong').play()">
       Play Song
     </button>
   </div>
