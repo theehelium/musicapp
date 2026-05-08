@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>MusicHub Entertainment</title>
+  <title>MusicHub · Zscaler‑ready</title>
   <style>
     * {
       margin: 0;
@@ -18,7 +18,7 @@
       scroll-behavior: smooth;
     }
 
-    /* Header */
+    /* Header & top bar */
     header {
       background: rgba(17, 24, 39, 0.92);
       backdrop-filter: blur(12px);
@@ -41,7 +41,6 @@
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      letter-spacing: -0.5px;
     }
 
     .search-box input {
@@ -53,56 +52,127 @@
       color: white;
       font-size: 0.95rem;
       outline: none;
-      transition: 0.25s;
       border: 1px solid #334155;
     }
 
     .search-box input:focus {
       border-color: #38bdf8;
       box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
-      background: #0f172a;
     }
 
-    /* Hero */
+    /* Settings panel */
+    .settings-panel {
+      background: #0f172a;
+      margin: 1rem 2rem 0 2rem;
+      border-radius: 1.5rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid #2d3a5e;
+      transition: all 0.2s;
+    }
+
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    .settings-header span {
+      font-size: 0.9rem;
+    }
+
+    .settings-content {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: flex-end;
+    }
+
+    .settings-group {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .settings-group label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #38bdf8;
+      margin-bottom: 0.3rem;
+    }
+
+    .settings-group input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 0.6rem 1rem;
+      border-radius: 40px;
+      color: white;
+      font-size: 0.85rem;
+    }
+
+    .settings-group input:focus {
+      border-color: #38bdf8;
+      outline: none;
+    }
+
+    .apply-btn {
+      background: #38bdf8;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #0f172a;
+      transition: 0.2s;
+    }
+
+    .apply-btn:hover {
+      background: #0ea5e9;
+      color: white;
+    }
+
+    .warning-banner {
+      background: #7c2d12;
+      border-left: 6px solid #f97316;
+      padding: 0.8rem 1.2rem;
+      margin: 1rem 2rem 0 2rem;
+      border-radius: 1rem;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .warning-banner a {
+      color: #facc15;
+    }
+
     .hero {
       text-align: center;
-      padding: 3rem 1.5rem;
-      background: linear-gradient(145deg, #0f172a, #0b1120);
-      border-bottom: 1px solid #1e293b;
+      padding: 2rem 1.5rem 1rem;
     }
 
-    .hero h1 {
-      font-size: 3rem;
-      background: linear-gradient(135deg, #e0f2fe, #38bdf8);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero p {
-      color: #94a3b8;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Main container */
     .container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 2.5rem 2rem;
+      padding: 1.5rem 2rem;
     }
 
     .section-title {
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 1.8rem;
-      letter-spacing: -0.3px;
       border-left: 5px solid #38bdf8;
       padding-left: 1rem;
     }
 
-    /* Music grid - clean & responsive */
     .music-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -110,40 +180,28 @@
       margin-bottom: 2.5rem;
     }
 
-    /* CARD design */
     .music-card {
       background: #111827;
       border-radius: 1.5rem;
       overflow: hidden;
-      transition: all 0.25s ease-in-out;
-      box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
+      transition: all 0.25s ease;
       border: 1px solid #1f2a3e;
     }
 
     .music-card:hover {
       transform: translateY(-5px);
       border-color: #38bdf8;
-      box-shadow: 0 20px 30px -12px rgba(56, 189, 248, 0.2);
     }
 
     .music-card img {
       width: 100%;
       height: 220px;
       object-fit: cover;
-      display: block;
       background: #0f172a;
-      transition: transform 0.4s;
-    }
-
-    .music-card:hover img {
-      transform: scale(1.02);
     }
 
     .music-info {
-      padding: 1.2rem 1.2rem 1.3rem;
-      flex: 1;
+      padding: 1.2rem;
       display: flex;
       flex-direction: column;
     }
@@ -151,35 +209,21 @@
     .music-info h3 {
       font-size: 1.2rem;
       font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 0.5rem;
       color: #facc15;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      margin-bottom: 0.4rem;
     }
 
     .artist {
       font-size: 0.85rem;
       color: #94a3b8;
-      margin-bottom: 1.2rem;
-      line-height: 1.4;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      margin-bottom: 1rem;
     }
 
     audio {
       width: 100%;
-      margin: 0.5rem 0 1rem 0;
+      margin: 0.5rem 0;
       border-radius: 40px;
       height: 40px;
-    }
-
-    audio::-webkit-media-controls-panel {
-      background-color: white;
     }
 
     .play-btn {
@@ -190,28 +234,20 @@
       border-radius: 40px;
       color: #0f172a;
       cursor: pointer;
-      transition: 0.2s;
       margin-top: 0.5rem;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
+      transition: 0.2s;
     }
 
     .play-btn:hover {
       background: #0ea5e9;
-      transform: scale(0.98);
       color: white;
     }
 
-    /* Pagination container */
     .pagination-wrap {
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 1rem;
-      margin: 2rem 0 1rem;
-      flex-wrap: wrap;
+      margin: 2rem 0;
     }
 
     .pagination-btn {
@@ -219,20 +255,8 @@
       color: #e2e8f0;
       border: none;
       padding: 0.6rem 1.4rem;
-      font-size: 0.9rem;
-      font-weight: 500;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pagination-btn:not(:disabled):hover {
-      background: #38bdf8;
-      color: #0f172a;
-      transform: translateY(-2px);
     }
 
     .pagination-btn:disabled {
@@ -244,14 +268,10 @@
       background: #0f172a;
       padding: 0.5rem 1.2rem;
       border-radius: 40px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border: 1px solid #334155;
     }
 
     .no-result {
       text-align: center;
-      font-size: 1.2rem;
       padding: 3rem;
       background: #111827;
       border-radius: 2rem;
@@ -265,203 +285,249 @@
       padding: 1.5rem;
       color: #6b7280;
       margin-top: 2rem;
-      font-size: 0.85rem;
-      border-top: 1px solid #1e293b;
     }
 
     @media (max-width: 640px) {
-      .container {
-        padding: 1.5rem;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .search-box input {
-        width: 100%;
-      }
-      header {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .music-grid {
-        gap: 1.2rem;
-      }
+      .container { padding: 1rem; }
+      .settings-panel { margin: 0.5rem; }
+      .warning-banner { margin: 0.5rem; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">🎧 MusicHub · WaveGrid</div>
+  <div class="logo">🎧 MusicHub · Zscaler Safe</div>
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="Search by song or artist...">
   </div>
 </header>
 
-<section class="container">
-  <h2 class="section-title">✨ Popular Songs</h2>
-  <div id="musicGrid" class="music-grid">
-    <!-- dynamic cards will be injected here -->
+<!-- Settings panel for Zscaler bypass -->
+<div class="settings-panel" id="settingsPanel">
+  <div class="settings-header" id="toggleSettings">
+    <span>⚙️ AUDIO SOURCE OVERRIDE (Bypass Zscaler blocks)</span>
+    <span>▼</span>
   </div>
+  <div class="settings-content" id="settingsContent" style="display: none;">
+    <div class="settings-group">
+      <label>🔊 Replace audio prefix (original CDN)</label>
+      <input type="text" id="audioPrefixOriginal" value="https://res.cloudinary.com/dsedfuptl/video/upload/" placeholder="Original prefix">
+    </div>
+    <div class="settings-group">
+      <label>🔄 ... with custom prefix (allowed server)</label>
+      <input type="text" id="audioPrefixNew" placeholder="https://your-allowed-server.com/path/">
+    </div>
+    <div class="settings-group">
+      <button class="apply-btn" id="applySettingsBtn">Apply & reload music</button>
+    </div>
+    <div style="font-size:12px; color:#6b8cae; margin-top:8px;">
+      💡 Tip: host the same audio files on an internal server or use a reverse proxy, then set the new prefix here.
+    </div>
+  </div>
+</div>
 
-  <!-- Pagination controls (visible only when needed) -->
+<div id="warningBanner" class="warning-banner" style="display: none;">
+  <span>⚠️ Audio files appear to be blocked by Zscaler or network policy. Use the settings above to replace the audio CDN with an allowed server.</span>
+  <a href="#" id="closeWarning">✖</a>
+</div>
+
+<section class="hero">
+  <h1>🎵 Stream without restrictions</h1>
+  <p>If audio doesn't load → adjust the CDN override above.</p>
+</section>
+
+<div class="container">
+  <h2 class="section-title">✨ Popular Songs</h2>
+  <div id="musicGrid" class="music-grid"></div>
   <div id="paginationControls" class="pagination-wrap" style="display: none;">
     <button id="prevPageBtn" class="pagination-btn">◀ Prev</button>
     <span id="pageIndicator" class="page-info">Page 1 / 1</span>
     <button id="nextPageBtn" class="pagination-btn">Next ▶</button>
   </div>
-</section>
+</div>
 
-<footer>
-  <p>© 2026 MusicHub | Montie Carmon</p>
-</footer>
+<footer>© 2026 MusicHub | Zscaler‑ready edition — override audio source to bypass streaming blocks</footer>
 
 <script>
-  // ---------- SONG DATABASE (6 tracks, fully editable) ----------
-  const songsDatabase = [
-    {
-      id: 1,
-      title: "2023 URBANIZED PARTY MIX",
-      artist: "DJ BYRON WORLDWIDE ft. Sia, J. Bieber, J. Derulo, Ed Sheeran",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778191402/2023_URBANIZED_PARTY_MIX_-__DJ_BYRON_WORLDWIDE_BEATNATION_ft_Sia__J._Bieber__J._Derulo__Ed_Sheeran_128k_tph5a2.mp3",
-      audioType: "audio/mpeg"
-    },
-    {
-      id: 2,
-      title: "DJ F2 · Urban RNB Mix",
-      artist: "DJ F2 ft. Justin Bieber, Khalid, Anne Marie, Chris Brown, Cardi B",
-      audioSrc: "https://kqt3lj29nh5xab8n.public.blob.vercel-storage.com/DJ_F2_URBAN_RNB_POP_KIZOMBA_VIDEO_MIX_FT_JUSTIN_BIEBER%2C_KHALID%2C_ANNE_MARIE%2C_CHRIS_BROWN%2C_CARDI_B%28128k%29.m4a",
-      audioType: "audio/mp4"
-    },
-    {
-      id: 3,
-      title: "BEST OF VYBZ KARTEL & KONSHENS",
-      artist: "Vybz Kartel, Konshens, Spice · Dancehall Energy",
-      image: "https://i.pinimg.com/1200x/3f/8c/83/3f8c831b1d515cee268437e9f25863ac.jpg",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778192720/Best_Of_Vybz_Kartel_Mix_-_Dj_Trez___Rvssian__Spice__Konshens__fever_128k_ppxmf6.mp3",
-      audioType: "audio/mpeg"
-    },
-    {
-      id: 4,
-      title: "URBAN TRAP · HIPHOP ENERGY",
-      artist: "Migos, Drake, Gunna, J. Cole · Best Mix",
-      image: "https://i.pinimg.com/736x/7a/f3/30/7af330c9d6ea0a0973bc956d5fc43c0c.jpg",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778193816/URBAN_TRAP___RAP___HIPHOP__VIDEO_MIX____MCE__16_WITH_DJ_MOON_FT._-_DRAKE___J_COLE___GUNNA___MIGOS_128k_czoad2.mp3",
-      audioType: "audio/mpeg"
-    },
-    {
-      id: 5,
-      title: "MOST PLAYED URBAN POP",
-      artist: "French Montana, Swae Lee, Sean Paul, Major Lazer",
-      image: "https://i.pinimg.com/1200x/dc/64/bd/dc64bdc69803e2a62e5eaf8d1d44e558.jpg",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778227696/_MOST_PLAYED_2015-2021_URBAN_POP_MIX_2026___VDJ_SARJENT_SEAN_PAUL_MAJOR_LAZER__JUSTIN_BIEBER_SIA_48k_1_wkzxzo.mp3",
-      audioType: "audio/mpeg"
-    },
-    {
-      id: 6,
-      title: "3-STEP MIX · AMAPIANO WAVE",
-      artist: "Jazzworld · Afro Tech, Bengicela, Mali, Isaka",
-      image: "https://i.pinimg.com/1200x/78/6f/84/786f849c35f124d10710142d1f3dfad4.jpg",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778227658/3_Step_Afro_Tech_Mix___Bengicela___Tholokuthi___Mali___uMA_weNGANE___Uzizwa_Kanjan___Isaka___Hurshy_48k_y5n1x3.mp3",
-      audioType: "audio/mpeg"
-    },
-    {
-      id: 7,
-      title: "LATEST DANCEHALL MIX",
-      artist: "Moliy, Vybz Kartel, Shenseea",
-      image: "https://i.pinimg.com/736x/a5/60/79/a56079c946649a27c96f062bd302a779.jpg",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778227732/_LATEST_DANCEHALL_RIDDIMS_VIDEO_MIX_2026___VDJ_SARJENT_VYBZ_KARTEL_KONSHENS_MOLLY_SKENG_RAJAHWILD_48k_1_hc9wsy.mp3",
-      audioType: "audio/mpeg"
-    },
-    {
-      id: 8,
-      title: "DAGGERING MIX",
-      artist: "Vybz Kartel, Konshens, Demarco",
-      image: "https://i.pinimg.com/1200x/d4/36/3d/d4363dfc6ff0b2a277fe1b10c5f9fcee.jpg",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778227793/DAGGERING_MIX___SHAKE_IT_TO_THE_MAX__FEVER_DANCEHALL_MIX_2025___ELI_ROSH_FT_VYBZ__KONSHENS__1_qadcn7.mp3",
-      audioType: "audio/mpeg"
-    },
-     {
-      id: 9,
-      title: "BEST CLUB BANGERS MIX 2025 DJ CARLOS ",
-      artist: "Toxic Lyrikali, Vybz Kartel, Konshens, Demarco",
-      image: "https://i.pinimg.com/736x/ae/6f/63/ae6f632430edba4fff8e0999518ff742.jpg",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778231696/BEST_CLUB_BANGERS_2025_VIDEO_MIX_TOXIC_LYRICAL_IYANII_VYBZ_KARTEL_DUFLA_KONSHENS_WAKADINALI_TRENDING_48k_1_nnkdcs.mp3",
-      audioType: "audio/mpeg"
-    },
-     {
-      id: 10,
-      title: "TRAP HIPHOP DJ SETRIN",
-      artist: "Drake, Migos, Cardi B",
-      image: "https://i.pinimg.com/1200x/0c/f0/fa/0cf0faeec908b0ed998096f422f6e325.jpg",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778230187/TRAP___HIPHOP_OFFICIAL_VIDEO_MIX_-_VJ_SETRIN_X_DJ_SMARTIX_FT_1_y7lycj.mp3",
-      audioType: "audio/mpeg"
-    },
-     {
-      id: 11,
-      title: "FRESHKID FT MC MIDOO",
-      artist: "Best Kenyan hits and latest hits",
-      image: "https://i.pinimg.com/1200x/a7/19/81/a71981dc04cee46c8b8efbb2cb794417.jpg",
-      audioSrc: "https://res.cloudinary.com/dsedfuptl/video/upload/v1778230232/FRESHKID_VENOM_ft_MC_MIDO_LIVE___COVO254___1_bi7u5x.mp3",
-      audioType: "audio/mpeg"
-    },
-    
+  // ---------- ORIGINAL SONG DATABASE (full original URLs) ----------
+  const rawSongs = [
+    { id:1, title:"2023 URBANIZED PARTY MIX", artist:"DJ BYRON WORLDWIDE ft. Sia, J. Bieber, J. Derulo, Ed Sheeran", image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778191402/2023_URBANIZED_PARTY_MIX_-__DJ_BYRON_WORLDWIDE_BEATNATION_ft_Sia__J._Bieber__J._Derulo__Ed_Sheeran_128k_tph5a2.mp3", audioType:"audio/mpeg" },
+    { id:2, title:"DJ F2 · Urban RNB Mix", artist:"DJ F2 ft. Justin Bieber, Khalid, Anne Marie, Chris Brown, Cardi B", image:"https://i.pinimg.com/736x/54/53/a4/5453a4c1c8656ddcdbb66d896d087179.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778191854/DJ_F2_URBAN_RNB_POP_KIZOMBA_VIDEO_MIX_FT_JUSTIN_BIEBER__KHALID__ANNE_MARIE__CHRIS_BROWN__CARDI_B_128k_e2jk8r.mp4", audioType:"audio/mp4" },
+    { id:3, title:"BEST OF VYBZ KARTEL & KONSHENS", artist:"Vybz Kartel, Konshens, Spice · Dancehall Energy", image:"https://i.pinimg.com/1200x/3f/8c/83/3f8c831b1d515cee268437e9f25863ac.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778192720/Best_Of_Vybz_Kartel_Mix_-_Dj_Trez___Rvssian__Spice__Konshens__fever_128k_ppxmf6.mp3", audioType:"audio/mpeg" },
+    { id:4, title:"URBAN TRAP · HIPHOP ENERGY", artist:"Migos, Drake, Gunna, J. Cole · Best Mix", image:"https://i.pinimg.com/736x/7a/f3/30/7af330c9d6ea0a0973bc956d5fc43c0c.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778193816/URBAN_TRAP___RAP___HIPHOP__VIDEO_MIX____MCE__16_WITH_DJ_MOON_FT._-_DRAKE___J_COLE___GUNNA___MIGOS_128k_czoad2.mp3", audioType:"audio/mpeg" },
+    { id:5, title:"MOST PLAYED URBAN POP", artist:"French Montana, Swae Lee, Sean Paul, Major Lazer", image:"https://i.pinimg.com/1200x/dc/64/bd/dc64bdc69803e2a62e5eaf8d1d44e558.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778227696/_MOST_PLAYED_2015-2021_URBAN_POP_MIX_2026___VDJ_SARJENT_SEAN_PAUL_MAJOR_LAZER__JUSTIN_BIEBER_SIA_48k_1_wkzxzo.mp3", audioType:"audio/mpeg" },
+    { id:6, title:"3-STEP MIX · AMAPIANO WAVE", artist:"Jazzworld · Afro Tech, Bengicela, Mali, Isaka", image:"https://i.pinimg.com/1200x/78/6f/84/786f849c35f124d10710142d1f3dfad4.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778227658/3_Step_Afro_Tech_Mix___Bengicela___Tholokuthi___Mali___uMA_weNGANE___Uzizwa_Kanjan___Isaka___Hurshy_48k_y5n1x3.mp3", audioType:"audio/mpeg" },
+    { id:7, title:"LATEST DANCEHALL MIX", artist:"Moliy, Vybz Kartel, Shenseea", image:"https://i.pinimg.com/736x/a5/60/79/a56079c946649a27c96f062bd302a779.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778227732/_LATEST_DANCEHALL_RIDDIMS_VIDEO_MIX_2026___VDJ_SARJENT_VYBZ_KARTEL_KONSHENS_MOLLY_SKENG_RAJAHWILD_48k_1_hc9wsy.mp3", audioType:"audio/mpeg" },
+    { id:8, title:"DAGGERING MIX", artist:"Vybz Kartel, Konshens, Demarco", image:"https://i.pinimg.com/1200x/d4/36/3d/d4363dfc6ff0b2a277fe1b10c5f9fcee.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778227793/DAGGERING_MIX___SHAKE_IT_TO_THE_MAX__FEVER_DANCEHALL_MIX_2025___ELI_ROSH_FT_VYBZ__KONSHENS__1_qadcn7.mp3", audioType:"audio/mpeg" },
+    { id:9, title:"BEST CLUB BANGERS MIX 2025 DJ CARLOS", artist:"Toxic Lyrikali, Vybz Kartel, Konshens, Demarco", image:"https://i.pinimg.com/736x/ae/6f/63/ae6f632430edba4fff8e0999518ff742.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778231696/BEST_CLUB_BANGERS_2025_VIDEO_MIX_TOXIC_LYRICAL_IYANII_VYBZ_KARTEL_DUFLA_KONSHENS_WAKADINALI_TRENDING_48k_1_nnkdcs.mp3", audioType:"audio/mpeg" },
+    { id:10, title:"TRAP HIPHOP DJ SETRIN", artist:"Drake, Migos, Cardi B", image:"https://i.pinimg.com/1200x/0c/f0/fa/0cf0faeec908b0ed998096f422f6e325.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778230187/TRAP___HIPHOP_OFFICIAL_VIDEO_MIX_-_VJ_SETRIN_X_DJ_SMARTIX_FT_1_y7lycj.mp3", audioType:"audio/mpeg" },
+    { id:11, title:"FRESHKID FT MC MIDOO", artist:"Best Kenyan hits and latest hits", image:"https://i.pinimg.com/1200x/a7/19/81/a71981dc04cee46c8b8efbb2cb794417.jpg", audioSrc:"https://res.cloudinary.com/dsedfuptl/video/upload/v1778230232/FRESHKID_VENOM_ft_MC_MIDO_LIVE___COVO254___1_bi7u5x.mp3", audioType:"audio/mpeg" }
   ];
 
-  // ---------- GLOBALS ----------
+  // ----- runtime data -----
   let currentPage = 1;
-  const ITEMS_PER_PAGE = 4;     // neat grid, avoid clutter
-  let filteredSongs = [...songsDatabase];   // start with full catalog
+  const ITEMS_PER_PAGE = 4;
+  let filteredSongs = [];
   let searchTerm = "";
+  let activeSongsList = [];   // songs with possibly modified audio URLs
 
   // DOM elements
-  const musicGridContainer = document.getElementById("musicGrid");
+  const musicGrid = document.getElementById("musicGrid");
   const searchInput = document.getElementById("searchInput");
-  const paginationWrapper = document.getElementById("paginationControls");
+  const paginationWrap = document.getElementById("paginationControls");
   const prevBtn = document.getElementById("prevPageBtn");
   const nextBtn = document.getElementById("nextPageBtn");
   const pageIndicator = document.getElementById("pageIndicator");
+  const warningBanner = document.getElementById("warningBanner");
+  const closeWarning = document.getElementById("closeWarning");
 
-  // Helper: pause all audio elements except the current one
-  function pauseAllOtherAudios(currentAudioElement) {
-    const allAudios = document.querySelectorAll('.song-audio');
-    allAudios.forEach(audio => {
-      if (audio !== currentAudioElement && !audio.paused) {
-        audio.pause();
+  // Settings panel elements
+  const toggleBtn = document.getElementById("toggleSettings");
+  const settingsContent = document.getElementById("settingsContent");
+  const audioPrefixOriginal = document.getElementById("audioPrefixOriginal");
+  const audioPrefixNew = document.getElementById("audioPrefixNew");
+  const applySettingsBtn = document.getElementById("applySettingsBtn");
+
+  // ----- Helper: apply URL override based on user settings -----
+  function applyAudioOverride(songsArray) {
+    let newPrefix = localStorage.getItem("customAudioPrefix");
+    let oldPrefix = localStorage.getItem("originalAudioPrefix");
+    if (!newPrefix || !oldPrefix || newPrefix === oldPrefix) {
+      return songsArray; // no change
+    }
+    return songsArray.map(song => {
+      if (song.audioSrc && song.audioSrc.startsWith(oldPrefix)) {
+        const relativePart = song.audioSrc.substring(oldPrefix.length);
+        let newSrc = newPrefix + relativePart;
+        return { ...song, audioSrc: newSrc };
       }
+      return { ...song };
     });
   }
 
-  // attach event handlers to every audio and every play button after render
-  function attachMediaEvents() {
-    // 1) Audio elements: when one starts playing, pause all others
-    const allAudioElements = document.querySelectorAll('.song-audio');
-    allAudioElements.forEach(audioEl => {
-      // remove possible old listeners to avoid duplicates, but we replace grid each render, so safe fresh.
-      audioEl.removeEventListener('play', audioEl._playHandler);
-      const playHandler = function() {
-        pauseAllOtherAudios(this);
+  // Save & apply settings from UI
+  function saveAndApplyOverride() {
+    const oldVal = audioPrefixOriginal.value.trim();
+    const newVal = audioPrefixNew.value.trim();
+    if (!oldVal || !newVal) {
+      alert("Please enter both original prefix and new prefix.\nExample:\nOriginal: https://res.cloudinary.com/dsedfuptl/video/upload/\nNew: https://your-server.com/music/");
+      return;
+    }
+    localStorage.setItem("originalAudioPrefix", oldVal);
+    localStorage.setItem("customAudioPrefix", newVal);
+    // reinitialise songs with new override and refresh
+    rebuildSongsWithOverride();
+    applyFiltersAndRender();
+  }
+
+  // rebuild activeSongsList from rawSongs + override
+  function rebuildSongsWithOverride() {
+    let overridden = applyAudioOverride(rawSongs);
+    activeSongsList = overridden;
+  }
+
+  // load saved settings into UI fields
+  function loadSettingsIntoUI() {
+    const savedOld = localStorage.getItem("originalAudioPrefix");
+    const savedNew = localStorage.getItem("customAudioPrefix");
+    if (savedOld) audioPrefixOriginal.value = savedOld;
+    if (savedNew) audioPrefixNew.value = savedNew;
+    if (savedOld && savedNew && savedOld !== savedNew) {
+      // apply override automatically at start
+      rebuildSongsWithOverride();
+    } else {
+      activeSongsList = [...rawSongs];
+    }
+  }
+
+  // Filter & pagination core
+  function applyFiltersAndRender() {
+    if (!searchTerm.trim()) {
+      filteredSongs = [...activeSongsList];
+    } else {
+      const term = searchTerm.trim().toLowerCase();
+      filteredSongs = activeSongsList.filter(song => 
+        song.title.toLowerCase().includes(term) || song.artist.toLowerCase().includes(term)
+      );
+    }
+
+    const totalPages = Math.ceil(filteredSongs.length / ITEMS_PER_PAGE);
+    if (totalPages === 0) currentPage = 1;
+    else if (currentPage > totalPages) currentPage = totalPages;
+    else if (currentPage < 1) currentPage = 1;
+
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const pageSongs = filteredSongs.slice(start, start + ITEMS_PER_PAGE);
+    renderCards(pageSongs);
+    updatePaginationUI(totalPages);
+  }
+
+  function renderCards(songsToRender) {
+    if (!musicGrid) return;
+    if (songsToRender.length === 0) {
+      musicGrid.innerHTML = `<div class="no-result">🎵 No matching tracks. Try another keyword.</div>`;
+      return;
+    }
+    let html = "";
+    for (const song of songsToRender) {
+      const safeTitle = escapeHtml(song.title);
+      const safeArtist = escapeHtml(song.artist);
+      html += `
+        <div class="music-card">
+          <img src="${song.image}" alt="${safeTitle}" loading="lazy" onerror="this.src='https://placehold.co/400x220/1e293b/38bdf8?text=Image+unavailable'">
+          <div class="music-info">
+            <h3>${safeTitle}</h3>
+            <p class="artist">${safeArtist}</p>
+            <audio controls preload="metadata" class="song-audio">
+              <source src="${song.audioSrc}" type="${song.audioType}">
+              Your browser doesn't support audio.
+            </audio>
+            <button class="play-btn">▶ Play Song</button>
+          </div>
+        </div>
+      `;
+    }
+    musicGrid.innerHTML = html;
+    attachAudioEvents();
+  }
+
+  // Audio conflict + error detection (show Zscaler warning if any audio fails)
+  function attachAudioEvents() {
+    const allAudio = document.querySelectorAll('.song-audio');
+    let audioFailed = false;
+    allAudio.forEach(audio => {
+      audio.removeEventListener('play', audio._playHandler);
+      const handler = () => {
+        const all = document.querySelectorAll('.song-audio');
+        all.forEach(a => { if (a !== audio && !a.paused) a.pause(); });
       };
-      audioEl.addEventListener('play', playHandler);
-      audioEl._playHandler = playHandler;
+      audio.addEventListener('play', handler);
+      audio._playHandler = handler;
+      
+      // error detection for Zscaler / network blocks
+      audio.removeEventListener('error', audio._errorHandler);
+      const errorHandler = (e) => {
+        if (!audioFailed) {
+          audioFailed = true;
+          warningBanner.style.display = "flex";
+        }
+      };
+      audio.addEventListener('error', errorHandler);
+      audio._errorHandler = errorHandler;
     });
 
-    // 2) Custom "Play Song" buttons: trigger play on sibling/previously found audio
-    const playButtons = document.querySelectorAll('.play-btn');
-    playButtons.forEach(btn => {
+    // Play buttons
+    const btns = document.querySelectorAll('.play-btn');
+    btns.forEach(btn => {
       btn.removeEventListener('click', btn._clickHandler);
-      const clickHandler = function(e) {
-        const card = this.closest('.music-card');
-        if (card) {
-          const targetAudio = card.querySelector('.song-audio');
-          if (targetAudio) {
-            pauseAllOtherAudios(targetAudio);
-            targetAudio.play().catch(err => {
-              console.warn("Playback error:", err);
-              // optional silent fail — allow user interaction
-            });
-          }
+      const clickHandler = () => {
+        const card = btn.closest('.music-card');
+        const audioEl = card?.querySelector('.song-audio');
+        if (audioEl) {
+          const allAudio = document.querySelectorAll('.song-audio');
+          allAudio.forEach(a => { if (a !== audioEl && !a.paused) a.pause(); });
+          audioEl.play().catch(() => { warningBanner.style.display = "flex"; });
         }
       };
       btn.addEventListener('click', clickHandler);
@@ -469,159 +535,56 @@
     });
   }
 
-  // Render cards based on array (sliced for current page)
-  function renderCards(songsToDisplay) {
-    if (!musicGridContainer) return;
-    
-    if (songsToDisplay.length === 0) {
-      musicGridContainer.innerHTML = `<div class="no-result">🎵 No matching tracks found. Try another keyword.</div>`;
-      paginationWrapper.style.display = "none";
-      return;
-    }
-    
-    // build HTML cards
-    let cardsHTML = "";
-    for (const song of songsToDisplay) {
-      cardsHTML += `
-        <div class="music-card">
-          <img src="${song.image}" alt="${escapeHtml(song.title)}" loading="lazy">
-          <div class="music-info">
-            <h3>${escapeHtml(song.title)}</h3>
-            <p class="artist">${escapeHtml(song.artist)}</p>
-            <audio controls preload="metadata" class="song-audio">
-              <source src="${song.audioSrc}" type="${song.audioType}">
-              Your browser does not support the audio element.
-            </audio>
-            <button class="play-btn">▶ Play Song</button>
-          </div>
-        </div>
-      `;
-    }
-    musicGridContainer.innerHTML = cardsHTML;
-    // after DOM injection, reattach events for proper "one audio at a time"
-    attachMediaEvents();
-  }
-
-  // simple XSS prevention
-  function escapeHtml(str) {
-    if (!str) return "";
-    return str.replace(/[&<>]/g, function(m) {
-      if (m === '&') return '&amp;';
-      if (m === '<') return '&lt;';
-      if (m === '>') return '&gt;';
-      return m;
-    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-      return c;
-    });
-  }
-
-  // update pagination UI and show/hide controls
-  function updatePaginationUI() {
-    const totalPages = Math.ceil(filteredSongs.length / ITEMS_PER_PAGE);
+  function updatePaginationUI(totalPages) {
     if (totalPages <= 1) {
-      paginationWrapper.style.display = "none";
+      paginationWrap.style.display = "none";
       return;
     }
-    paginationWrapper.style.display = "flex";
+    paginationWrap.style.display = "flex";
     pageIndicator.innerText = `Page ${currentPage} / ${totalPages}`;
-    
-    // enable/disable buttons
     if (prevBtn) prevBtn.disabled = (currentPage === 1);
     if (nextBtn) nextBtn.disabled = (currentPage === totalPages);
   }
-  
-  // core function: filter + paginate + render
-  function applyFilterAndPagination() {
-    // 1) filter based on searchTerm (case-insensitive)
-    if (!searchTerm.trim()) {
-      filteredSongs = [...songsDatabase];
-    } else {
-      const termLower = searchTerm.trim().toLowerCase();
-      filteredSongs = songsDatabase.filter(song => 
-        song.title.toLowerCase().includes(termLower) || 
-        song.artist.toLowerCase().includes(termLower)
-      );
-    }
-    
-    // 2) adjust currentPage if it exceeds total pages after filtering
-    const totalPages = Math.ceil(filteredSongs.length / ITEMS_PER_PAGE);
-    if (totalPages === 0) {
+
+  function goPrev() { if (currentPage > 1) { currentPage--; applyFiltersAndRender(); scrollToGrid(); } }
+  function goNext() { 
+    const total = Math.ceil(filteredSongs.length / ITEMS_PER_PAGE);
+    if (currentPage < total) { currentPage++; applyFiltersAndRender(); scrollToGrid(); }
+  }
+  function scrollToGrid() { document.querySelector('.section-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
+  function escapeHtml(str) { if (!str) return ""; return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
+
+  // init search
+  function initSearch() {
+    if (!searchInput) return;
+    searchInput.addEventListener("input", (e) => {
+      searchTerm = e.target.value;
       currentPage = 1;
-    } else if (currentPage > totalPages) {
-      currentPage = totalPages;
-    } else if (currentPage < 1) {
-      currentPage = 1;
-    }
-    
-    // 3) get slice for current page
-    const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIdx = startIdx + ITEMS_PER_PAGE;
-    const pageSongs = filteredSongs.slice(startIdx, endIdx);
-    
-    // 4) render
-    renderCards(pageSongs);
-    updatePaginationUI();
+      applyFiltersAndRender();
+    });
   }
-  
-  // reset to page 1 on new search (call after search updates)
-  function handleSearch() {
-    searchTerm = searchInput.value;
-    currentPage = 1;   // always reset pagination when search changes
-    applyFilterAndPagination();
-  }
-  
-  // pagination navigation
-  function goPrevPage() {
-    if (currentPage > 1) {
-      currentPage--;
-      applyFilterAndPagination();
-      // smooth scroll to top of music grid for UX
-      document.querySelector('.section-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-  
-  function goNextPage() {
-    const totalPages = Math.ceil(filteredSongs.length / ITEMS_PER_PAGE);
-    if (currentPage < totalPages) {
-      currentPage++;
-      applyFilterAndPagination();
-      document.querySelector('.section-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-  
-  // optional: ensure that after playing audio, no other remains; also handle dynamic event duplication resistance
-  // already done in attachMediaEvents.
-  
-  // Additional neatness: global one-audio guarantee also if user clicks play manually
-  // we also cover audio 'play' event globally, which ensures all dynamic cards respect the rule.
-  
-  // ---------- INITIALIZE AND EVENT LISTENERS ----------
-  function init() {
-    // initial render: all songs, page 1
-    filteredSongs = [...songsDatabase];
-    currentPage = 1;
-    applyFilterAndPagination();
-    
-    // search listener
-    if (searchInput) {
-      searchInput.addEventListener("input", (e) => {
-        searchTerm = e.target.value;
-        currentPage = 1;
-        applyFilterAndPagination();
-      });
-    }
-    
-    // pagination button listeners
-    if (prevBtn) prevBtn.addEventListener("click", goPrevPage);
-    if (nextBtn) nextBtn.addEventListener("click", goNextPage);
-  }
-  
-  // start application
-  init();
-  
-  // (Bonus) Graceful handling: when any audio ends, no side effect needed.
-  // Also ensures that if there are many more songs in future (e.g., 20 tracks), 
-  // pagination keeps UI clean. Search and pagination fully decoupled.
+
+  // load initial data and attach events
+  (function init() {
+    loadSettingsIntoUI();
+    if (!activeSongsList.length) activeSongsList = [...rawSongs];
+    initSearch();
+    applyFiltersAndRender();
+    if (prevBtn) prevBtn.addEventListener("click", goPrev);
+    if (nextBtn) nextBtn.addEventListener("click", goNext);
+    if (applySettingsBtn) applySettingsBtn.addEventListener("click", saveAndApplyOverride);
+    if (toggleBtn) toggleBtn.addEventListener("click", () => {
+      const isVisible = settingsContent.style.display !== "none";
+      settingsContent.style.display = isVisible ? "none" : "flex";
+    });
+    if (closeWarning) closeWarning.addEventListener("click", (e) => { e.preventDefault(); warningBanner.style.display = "none"; });
+    // auto test for first audio error after timeout
+    setTimeout(() => {
+      const testAudio = document.querySelector('.song-audio');
+      if (testAudio && testAudio.networkState === 3) warningBanner.style.display = "flex";
+    }, 1500);
+  })();
 </script>
 </body>
 </html>
